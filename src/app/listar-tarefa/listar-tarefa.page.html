@@ -1,13 +1,51 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>listar-tarefa</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informações da Tarefa:</ion-title>
+  
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">listar-tarefa</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+
+   
+        <ion-list>
+          <h3>Titulo da tarefa</h3>
+
+          <h6>descricao</h6>
+
+          <h5>Conclusão das Etapas:</h5>
+
+          <ion-item>
+            <ion-checkbox justify="space-between">Etapa 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid necessitatibus nobis iure ducimus laudantium placeat rem reprehenderit. Iure recusandae cumque quasi ipsum eum odit ex aut, hic magnam porro alias.</ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox justify="space-between">Etapa 2</ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox justify="space-between">Etapa 3</ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox justify="space-between">Etapa 4</ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox justify="space-between">Etapa 5</ion-checkbox>
+          </ion-item>
+          
+          <ion-button expand="block" color="danger">Excluir Tarefa</ion-button>
+        </ion-list>
+
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <h5>Conclusão das Etapas:</h5>
+
+    <p>"progresso"</p>
+    <ion-button expand="block" color="purple-fab">Atualizar Tarefa</ion-button>
+  </ion-toolbar>
+</ion-footer>

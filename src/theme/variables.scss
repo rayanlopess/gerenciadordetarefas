@@ -1,14 +1,29 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
 :root {
-	--ion-color-purple-fab: #412f5b;
-	--ion-color-purple-fab-rgb: 65,47,91;
+	--ion-color-purple: #7439c0;
+	--ion-color-purple-rgb: 116,57,192;
+	--ion-color-purple-contrast: #ffffff;
+	--ion-color-purple-contrast-rgb: 255,255,255;
+	--ion-color-purple-shade: #6632a9;
+	--ion-color-purple-tint: #824dc6;
+
+	--ion-color-purple-fab: #412565;
+	--ion-color-purple-fab-rgb: 65,37,101;
 	--ion-color-purple-fab-contrast: #ffffff;
 	--ion-color-purple-fab-contrast-rgb: 255,255,255;
-	--ion-color-purple-fab-shade: #392950;
-	--ion-color-purple-fab-tint: #54446b;
+	--ion-color-purple-fab-shade: #392159;
+	--ion-color-purple-fab-tint: #543b74;
 }
 
+.ion-color-purple {
+	--ion-color-base: var(--ion-color-purple);
+	--ion-color-base-rgb: var(--ion-color-purple-rgb);
+	--ion-color-contrast: var(--ion-color-purple-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-purple-contrast-rgb);
+	--ion-color-shade: var(--ion-color-purple-shade);
+	--ion-color-tint: var(--ion-color-purple-tint);
+}
 .ion-color-purple-fab {
 	--ion-color-base: var(--ion-color-purple-fab);
 	--ion-color-base-rgb: var(--ion-color-purple-fab-rgb);
