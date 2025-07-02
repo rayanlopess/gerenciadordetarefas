@@ -1,13 +1,103 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>cadastro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cadastro</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-img src="../../../assets/images/logo-img.png"></ion-img>
+
+    <ion-card-header>
+        <ion-card-title>Cadastro</ion-card-title>
+        <ion-card-subtitle>Preencha os campos abaixo</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-input
+            class="custom"
+             label="Nome"
+             label-placement="floating" 
+             fill="outline" 
+             placeholder="Digite o Nome" 
+             [(ngModel)]="nome" 
+             [clearInput]="true" 
+             color="nutask">
+            </ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-input 
+            color="primary" 
+            label="Login ou Usuário" 
+            label-placement="floating" 
+            fill="outline" 
+            placeholder="Digite o Login ou Usuário" 
+            [clearInput]="true" 
+            [(ngModel)]="login">
+          </ion-input>
+          </ion-col>
+        </ion-row>
+
+         <ion-row>
+          <ion-col>
+            <ion-input 
+            label="E-mail" 
+            label-placement="floating" 
+            fill="outline" 
+            placeholder="Digite o E-mail" 
+            [clearInput]="true" 
+            [(ngModel)]="email" 
+            color="nutask">
+          </ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-input 
+            label="Senha" 
+            label-placement="floating" 
+            fill="outline" 
+            placeholder="Digite a senha" 
+            [(ngModel)]="senha" 
+            color="nutask" 
+            type="password">
+          </ion-input>
+          </ion-col>
+        </ion-row> 
+
+         <ion-row>
+          <ion-col>
+            <ion-button 
+            expand="full" 
+            (click)="salvar()">Cadastrar</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button 
+            expand="full" 
+            routerLink="/login" 
+            class="botao-login"
+            >Login</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+
 </ion-content>

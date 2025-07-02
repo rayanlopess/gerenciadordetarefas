@@ -37,9 +37,17 @@
 @import '@ionic/angular/css/palettes/dark.system.css';
 
 ion-toolbar{
-    --background: #281d36;
+    --background: #8b04be;
 }
 ion-button{
-    --background: #281d36;
+    --background: #8b04be;
     --color: whitesmoke;
+}
+.botao-login{
+    --background: whitesmoke;
+    --color: #8b04be;
+}
+.botao-cadastro{
+    --background: whitesmoke;
+    --color: #8b04be;
 }

@@ -13,6 +13,33 @@
 
   <ion-content class="ion-padding">
 
+    <ion-button expand="block" routerLink="/dashboard"> 
+    
+      <ion-icon name="bar-chart"></ion-icon>
+      
+
+      &nbsp;Dashboard
+
+    </ion-button> 
+
+    <ion-button expand="block" routerLink="/cadastro"> 
+    
+      <ion-icon name="person-add"></ion-icon>
+      
+
+      &nbsp; Cadastro
+
+    </ion-button> 
+
+    <ion-button expand="block" routerLink="/login"> 
+    
+      <ion-icon name="person"></ion-icon>
+      
+
+      &nbsp; Login
+
+    </ion-button> 
+
   </ion-content>
 
 </ion-menu>
@@ -31,17 +58,19 @@
   <ion-content class="">
 
     <ion-fab slot="fixed" vertical="top" horizontal="end" [edge]="true" >
-      <ion-fab-button color="purple-fab">
-        <ion-icon name="chevron-down"></ion-icon>
+      <ion-fab-button color="dark">
+        <ion-icon name="chevron-down" color="nutask"></ion-icon>
       </ion-fab-button>
+
       <ion-fab-list side="bottom" >
         <ion-fab-button color="success" (click)="adicionarTarefa()"> 
-          <ion-icon name="add"></ion-icon>
+          <ion-icon name="add" color="dark"></ion-icon>
         </ion-fab-button>
         <ion-fab-button color="danger" (click)="deletarTudo()">
-          <ion-icon name="trash"></ion-icon>
+          <ion-icon name="trash" color="dark"></ion-icon>
         </ion-fab-button>
       </ion-fab-list>
+
     </ion-fab>
     
     <ion-grid>

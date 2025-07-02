@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
-import { add, trash, chevronDown, personCircle} from 'ionicons/icons';
-import { Router } from '@angular/router';
+import { add, trash, chevronDown, personCircle, barChart, person, personAdd} from 'ionicons/icons';
+import { Router, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 
@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule]
+  imports: [CommonModule, FormsModule, IonicModule, RouterLink]
 })
 export class DashboardPage implements OnInit {
 
@@ -21,7 +21,7 @@ export class DashboardPage implements OnInit {
     private titleService: Title,
     private rt:Router
   ) { 
-    addIcons({add, trash, chevronDown, personCircle});
+    addIcons({add, trash, chevronDown, personCircle, barChart, person, personAdd});
   }
 
   ngOnInit() {

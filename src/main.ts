@@ -9,6 +9,8 @@ import { firebaseConfig } from '../src/environments/environment';
 import { provideDatabase } from '@angular/fire/database';
 import { getDatabase } from 'firebase/database';
 
+import { provideHttpClient } from '@angular/common/http';                   
+
 bootstrapApplication(AppComponent, {
   providers: [
     
@@ -17,5 +19,6 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideDatabase(() => getDatabase()),
+    provideHttpClient()
   ],
 });

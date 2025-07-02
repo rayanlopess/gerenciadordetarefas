@@ -14,6 +14,13 @@
 	--ion-color-purple-fab-contrast-rgb: 255,255,255;
 	--ion-color-purple-fab-shade: #392159;
 	--ion-color-purple-fab-tint: #543b74;
+
+	--ion-color-nutask: #8b04be;
+	--ion-color-nutask-rgb: 139,4,190;
+	--ion-color-nutask-contrast: #ffffff;
+	--ion-color-nutask-contrast-rgb: 255,255,255;
+	--ion-color-nutask-shade: #7a04a7;
+	--ion-color-nutask-tint: #971dc5;
 }
 
 .ion-color-purple {
@@ -24,6 +31,7 @@
 	--ion-color-shade: var(--ion-color-purple-shade);
 	--ion-color-tint: var(--ion-color-purple-tint);
 }
+
 .ion-color-purple-fab {
 	--ion-color-base: var(--ion-color-purple-fab);
 	--ion-color-base-rgb: var(--ion-color-purple-fab-rgb);
@@ -31,4 +39,13 @@
 	--ion-color-contrast-rgb: var(--ion-color-purple-fab-contrast-rgb);
 	--ion-color-shade: var(--ion-color-purple-fab-shade);
 	--ion-color-tint: var(--ion-color-purple-fab-tint);
+}
+// Custom color for NuTask
+.ion-color-nutask {
+	--ion-color-base: var(--ion-color-nutask);
+	--ion-color-base-rgb: var(--ion-color-nutask-rgb);
+	--ion-color-contrast: var(--ion-color-nutask-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-nutask-contrast-rgb);
+	--ion-color-shade: var(--ion-color-nutask-shade);
+	--ion-color-tint: var(--ion-color-nutask-tint);
 }

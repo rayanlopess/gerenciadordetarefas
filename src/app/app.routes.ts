@@ -23,11 +23,8 @@ export const routes: Routes = [
     loadComponent: () => import('./criar-tarefa/criar-tarefa.page').then( m => m.CriarTarefaPage)
   },
   {
-    path: 'listar-tarefa',
+    path: 'tarefa',
     loadComponent: () => import('./listar-tarefa/listar-tarefa.page').then( m => m.ListarTarefaPage)
   },
-  {
-    path: 'atualizar-tarefa',
-    loadComponent: () => import('./atualizar-tarefa/atualizar-tarefa.page').then( m => m.AtualizarTarefaPage)
-  },
+  
 ];
