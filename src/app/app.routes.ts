@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -16,15 +17,18 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadComponent: () => import('./dashboard/dashboard.page').then( m => m.DashboardPage)
+    loadComponent: () => import('./dashboard/dashboard.page').then( m => m.DashboardPage),
+    canActivate: [authGuard]
   },
   {
     path: 'criar-tarefa',
-    loadComponent: () => import('./criar-tarefa/criar-tarefa.page').then( m => m.CriarTarefaPage)
+    loadComponent: () => import('./criar-tarefa/criar-tarefa.page').then( m => m.CriarTarefaPage),
+    canActivate: [authGuard]
   },
   {
     path: 'tarefa',
-    loadComponent: () => import('./listar-tarefa/listar-tarefa.page').then( m => m.ListarTarefaPage)
+    loadComponent: () => import('./listar-tarefa/listar-tarefa.page').then( m => m.ListarTarefaPage),
+    canActivate: [authGuard]
   },
   
 ];

@@ -36,6 +36,7 @@ export class CadastroPage implements OnInit {
     fd.append('login', this.login);
     fd.append('email', this.email);
     fd.append('senha', this.senha);
+    fd.append('controller', 'cadastro-usuario');
 
     this.rs.post(fd)
     .subscribe();

@@ -70,32 +70,12 @@ export class RealtimeDatabaseService {
 
 
   async removeAndReindex(url: string, id: number) {
-    try {
+    
       // 1. Remove o item específico
       await remove(this.ref(`${url}/${id}`));
   
-      // 2. Obtém todos os itens restantes
-      const snapshot = await get(this.ref(url));
-      const items: any[] = [];
-  
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          items.push(child.val()); // Corrigido para val() em vez de values()
-        });
-      }
-  
-      // 3. Limpa o nó completo
-      await remove(this.ref(url));
-  
-      // 4. Reinsere com novos IDs sequenciais
-      for (let i = 0; i < items.length; i++) {
-        await set(this.ref(`${url}/${i + 1}`), items[i]);
-      }
-    } catch (error) {
-      console.error('Erro na reindexação:', error);
-      throw error;
     }
-  }
+  
 
 
   async deleteAll(path: string): Promise<boolean> {

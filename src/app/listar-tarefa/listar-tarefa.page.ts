@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+//import { ActivatedRoute } from '@angular/router';
+//import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-listar-tarefa',
@@ -12,46 +12,41 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class TarefaPage implements OnInit {
-  tarefaId: string = '101';
-  etapas: any[] = [];
-  progresso = 0;
-  carregando = true;
+export class ListarTarefaPage implements OnInit {
+  public etapas: any[] = [
+    { descricao: 'Etapa 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
+    { descricao: 'Etapa 2 - Aliquid necessitatibus nobis iure ducimus laudantium.' },
+    { descricao: 'Etapa 3 - Placeat rem reprehenderit. Iure recusandae cumque quasi.' },
+    { descricao: 'Etapa 2 - Aliquid necessitatibus nobis iure ducimus laudantium.' },
+    { descricao: 'Etapa 3 - Placeat rem reprehenderit. Iure recusandae cumque quasi.' },
+    // Adicione mais etapas conforme necessário
+  ];
 
-  constructor(
-    private route: ActivatedRoute,
-    private firestore: AngularFirestore
-  ) { }
+  public progress = 0;
+  public porcentagem = '0%';
+  public checkedEtapas: boolean[] = [];
+
+  constructor() { }
 
   ngOnInit() {
-    //this.tarefaId = this.route.snapshot.paramMap.get('id');
-    this.carregarEtapas();
+    // Inicializa o array de etapas checadas como false
+    this.checkedEtapas = new Array(this.etapas.length).fill(false);
+    this.calcularProgresso();
   }
 
-  carregarEtapas() {
-    this.firestore.collection('tarefas').doc(this.tarefaId).collection('etapas')
-      .valueChanges()
-      .subscribe((etapas: any[]) => {
-        this.etapas = etapas;
-        this.calcularProgresso();
-        this.carregando = false;
-      });
+  getEtapasArray(): number[] {
+    return Array(this.etapas.length).fill(0).map((x, i) => i);
   }
 
-  atualizarEtapa(etapa: any) {
-    this.firestore.collection('tarefas').doc(this.tarefaId)
-      .collection('etapas').doc(etapa.id).update({
-        concluida: !etapa.concluida
-      });
+  atualizarCheckbox(index: number) {
+    this.calcularProgresso();
   }
 
   calcularProgresso() {
-    if (this.etapas.length === 0) {
-      this.progresso = 0;
-      return;
-    }
+    const totalEtapas = this.etapas.length;
+    const etapasConcluidas = this.checkedEtapas.filter(checked => checked).length;
     
-    const concluidas = this.etapas.filter(e => e.concluida).length;
-    this.progresso = Math.round((concluidas / this.etapas.length) * 100);
+    this.progress = etapasConcluidas / totalEtapas;
+    this.porcentagem = Math.round(this.progress * 100) + '%';
   }
 }

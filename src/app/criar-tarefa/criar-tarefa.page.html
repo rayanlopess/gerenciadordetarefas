@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button default-href="#"></ion-back-button>
+      <ion-back-button default-href="/dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title>Criação da Tarefa:</ion-title>
   
@@ -13,14 +13,14 @@
     <ion-row>
       <ion-col>
         <ion-label>
-          <ion-input label="Título" label-placement="floating" fill="outline" placeholder="Ex.: Resgatar Cachorrinhos" color="nutask"></ion-input>
+          <ion-input label="Título" label-placement="floating" fill="outline" placeholder="Ex.: Resgatar Cachorrinhos" color="nutask" [(ngModel)]="tituloTarefa"></ion-input>
         </ion-label>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <ion-textarea label="Descrição" labelPlacement="floating" fill="outline" placeholder="Ex.: Salvar todos os 'doguinhos'..." color="nutask"></ion-textarea>
+        <ion-textarea label="Descrição" labelPlacement="floating" fill="outline" placeholder="Ex.: Salvar todos os 'doguinhos'..." color="nutask" [(ngModel)]="descricaoTarefa"></ion-textarea>
       </ion-col>
     </ion-row>
 
@@ -30,33 +30,35 @@
       </ion-col>
     </ion-row>
 
+     <!-- Seletor de Etapas -->
     <ion-row>
       <ion-col>
-        <ion-select label-placement="floating" fill="outline" label="Quantidade de Etapas:" [(ngModel)]="quantidade" color="nutask">
+        <ion-select label="Quantidade de Etapas" [(ngModel)]="quantidade" 
+          (ionChange)="atualizarEtapas()" interface="action-sheet">
           <ion-select-option *ngFor="let qtd of quantidades" [value]="qtd">
-            {{qtd}}
+            {{ qtd }} {{ qtd === 1 ? 'etapa' : 'etapas' }}
           </ion-select-option>
         </ion-select>
       </ion-col>
     </ion-row>
 
-    <!-- Aqui está o ngFor para criar as etapas dinamicamente -->
-    <div *ngFor="let etapa of getEtapasArray(); let i = index">
+    <!-- Lista de Etapas -->
+    <div *ngFor="let etapa of etapas; let i = index">
       <ion-row>
         <ion-col>
-          <h3>Etapa {{i + 1}}:</h3>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-textarea [label]="'Descrição da Etapa ' + (i + 1)" labelPlacement="floating" fill="outline" placeholder="Ex:  Encontrar os cachorrinhos..." color="nutask"></ion-textarea>
+          <ion-textarea 
+            [label]="'Etapa ' + (i + 1)" 
+            labelPlacement="floating"
+            [(ngModel)]="etapas[i].descricao"
+            placeholder="Descreva esta etapa">
+          </ion-textarea>
         </ion-col>
       </ion-row>
     </div>
 
     <ion-row>
       <ion-col>
-        <ion-button expand="block">Salvar</ion-button>
+        <ion-button expand="block" (click)="salvar()">Salvar</ion-button>
       </ion-col>
     </ion-row>
 

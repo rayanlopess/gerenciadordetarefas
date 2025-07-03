@@ -7,7 +7,7 @@
           <ion-icon slot="icon-only" name="person-circle"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title>Fazer Login</ion-title>
+      <ion-title>Olá, {{nome}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -22,21 +22,12 @@
 
     </ion-button> 
 
-    <ion-button expand="block" routerLink="/cadastro"> 
+    <ion-button expand="block" routerLink="/login" (click)="logOut()"> 
     
-      <ion-icon name="person-add"></ion-icon>
+      <ion-icon name="log-out"></ion-icon>
       
 
-      &nbsp; Cadastro
-
-    </ion-button> 
-
-    <ion-button expand="block" routerLink="/login"> 
-    
-      <ion-icon name="person"></ion-icon>
-      
-
-      &nbsp; Login
+      &nbsp;Log-Out
 
     </ion-button> 
 
@@ -78,12 +69,12 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Bem-Vindo!</ion-card-title>
-              <ion-card-subtitle>Não tem uma conta? <a (click)="criarConta()">Crie aqui</a></ion-card-subtitle>
+              <ion-card-title>Bem-Vindo, {{nome}}!</ion-card-title>
+              
             </ion-card-header>
           
             <ion-card-content>
-              Já possui uma conta? <a (click)="logarConta()">Faça o login aqui</a>
+              
             </ion-card-content>
           </ion-card>
         </ion-col>

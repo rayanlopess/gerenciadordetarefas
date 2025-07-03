@@ -8,24 +8,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list *ngIf="!carregando">
-    <ion-item *ngFor="let etapa of etapas">
-      <ion-checkbox slot="start" 
-                   [checked]="etapa.concluida"
-                   (ionChange)="atualizarEtapa(etapa)">
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <h3>Titulo da tarefa</h3>
+    <h6>descricao</h6>
+    <h5>Conclusão das Etapas:</h5>
+
+    <ion-item *ngFor="let index of getEtapasArray(); let i = index">
+      <ion-checkbox 
+        justify="space-between" 
+        [(ngModel)]="checkedEtapas[i]"
+        (ionChange)="atualizarCheckbox(i)">
+        {{etapas[i].descricao}}
       </ion-checkbox>
-      <ion-label [class.concluida]="etapa.concluida">
-        {{etapa.descricao}}
-      </ion-label>
     </ion-item>
-
-    <ion-progress-bar [value]="progresso / 100"></ion-progress-bar>
-    <p class="ion-text-center">{{progresso}}% concluído</p>
+    
+    <ion-button expand="block" color="danger">Excluir Tarefa</ion-button>
   </ion-list>
-
-  <div *ngIf="carregando" class="ion-text-center ion-padding">
-    <ion-spinner></ion-spinner>
-    <p>Carregando etapas...</p>
-  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <h5>Conclusão das Etapas: {{porcentagem}}</h5>
+    <p id="progressBar">
+      <ion-progress-bar [value]="progress" color="success"></ion-progress-bar>
+    </p>
+
+    <ion-button expand="block" color="primary">Atualizar Tarefa</ion-button>
+  </ion-toolbar>
+</ion-footer>
