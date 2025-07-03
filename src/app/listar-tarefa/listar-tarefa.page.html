@@ -8,44 +8,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  
+<ion-content>
+  <ion-list *ngIf="!carregando">
+    <ion-item *ngFor="let etapa of etapas">
+      <ion-checkbox slot="start" 
+                   [checked]="etapa.concluida"
+                   (ionChange)="atualizarEtapa(etapa)">
+      </ion-checkbox>
+      <ion-label [class.concluida]="etapa.concluida">
+        {{etapa.descricao}}
+      </ion-label>
+    </ion-item>
 
-   
-        <ion-list>
-          <h3>Titulo da tarefa</h3>
+    <ion-progress-bar [value]="progresso / 100"></ion-progress-bar>
+    <p class="ion-text-center">{{progresso}}% concluído</p>
+  </ion-list>
 
-          <h6>descricao</h6>
-
-          <h5>Conclusão das Etapas:</h5>
-
-          <ion-item>
-            <ion-checkbox justify="space-between">Etapa 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid necessitatibus nobis iure ducimus laudantium placeat rem reprehenderit. Iure recusandae cumque quasi ipsum eum odit ex aut, hic magnam porro alias.</ion-checkbox>
-          </ion-item>
-          <ion-item>
-            <ion-checkbox justify="space-between">Etapa 2</ion-checkbox>
-          </ion-item>
-          <ion-item>
-            <ion-checkbox justify="space-between">Etapa 3</ion-checkbox>
-          </ion-item>
-          <ion-item>
-            <ion-checkbox justify="space-between">Etapa 4</ion-checkbox>
-          </ion-item>
-          <ion-item>
-            <ion-checkbox justify="space-between">Etapa 5</ion-checkbox>
-          </ion-item>
-          
-          <ion-button expand="block" color="danger">Excluir Tarefa</ion-button>
-        </ion-list>
-
-
+  <div *ngIf="carregando" class="ion-text-center ion-padding">
+    <ion-spinner></ion-spinner>
+    <p>Carregando etapas...</p>
+  </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <h5>Conclusão das Etapas:</h5>
-
-    <p>"progresso"</p>
-    <ion-button expand="block" color="purple-fab">Atualizar Tarefa</ion-button>
-  </ion-toolbar>
-</ion-footer>
