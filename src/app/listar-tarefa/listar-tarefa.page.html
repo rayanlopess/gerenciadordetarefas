@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button default-href="#"></ion-back-button>
+      <ion-back-button default-href="/dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title>Informações da Tarefa:</ion-title>
   
@@ -10,8 +10,8 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <h3>Titulo da tarefa</h3>
-    <h6>descricao</h6>
+    <h3>{{titulo}}</h3>
+    <h6>{{descricao}}</h6>
     <h5>Conclusão das Etapas:</h5>
 
     <ion-item *ngFor="let index of getEtapasArray(); let i = index">
@@ -34,6 +34,6 @@
       <ion-progress-bar [value]="progress" color="success"></ion-progress-bar>
     </p>
 
-    <ion-button expand="block" color="primary">Atualizar Tarefa</ion-button>
+    <ion-button expand="block" (click)="atualizarTarefa()">Atualizar Tarefa</ion-button>
   </ion-toolbar>
 </ion-footer>

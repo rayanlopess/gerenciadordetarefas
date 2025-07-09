@@ -11,6 +11,7 @@ import { add, trash, chevronDown, personCircle} from 'ionicons/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { RealtimeDatabaseService } from '../firebase/realtime-database.service';
+import { AlertController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-criar-tarefa',
@@ -33,8 +34,8 @@ export class CriarTarefaPage implements OnInit {
     private titleService: Title,
     private rt: Router,
     private realtime: RealtimeDatabaseService,
-    private ar: ActivatedRoute
-    
+    private ar: ActivatedRoute,
+    private alertController: AlertController
     
   ) {
     addIcons({add, trash, chevronDown, personCircle});
@@ -67,34 +68,72 @@ export class CriarTarefaPage implements OnInit {
 
     
   }
-  salvar() {
+  async salvar() {
     if (!this.tituloTarefa || !this.descricaoTarefa || !this.etapas || this.etapas.length === 0) {
-      console.error('Preencha todos os campos obrigatórios');
-      return;
-    }
+      const alert = await this.alertController.create({
+        header: 'Preencha os campos corretamente!',
+        buttons: [{
+          text: 'OK',
+          role: 'OK',
+          handler: () => {
+   
+          },
+        },],
+      });
   
-    const taskData = {
+      await alert.present();
       
-    };
+    }
+    else{
+      this.realtime.add('tarefas', {
+        titulo: this.tituloTarefa,
+        descricao: this.descricaoTarefa,
+        responsavel: this.usuario,
+        etapas: this.etapas.map((etapa) => ({
+          descricao: etapa.descricao,
+          concluido: false, 
+        })),
+        progresso: 0 
+      })
+      .subscribe({
+        next: async (res: any) => {
+          const alert = await this.alertController.create({
+            header: 'Tarefa cadastrada com sucesso!',
+            buttons: [{
+              text: 'OK',
+              role: 'OK',
+              handler: () => {
+       
+                this.rt.navigate(['/dashboard']);
+                console.log("Titulo: ",this.tituloTarefa, "Descricao: ",this.descricaoTarefa, "Responsavel", this.usuario, "Etapas: ", this.etapas);
+              },
+            },],
+          });
+      
+          await alert.present();
+          
+        },
+        error: async (err) => {
+          const alert = await this.alertController.create({
+            header: 'Erro ao cadastrar tarefa!',
+            buttons: [{
+              text: 'OK',
+              role: 'OK',
+              handler: () => {
+   
   
-    this.realtime.add('tarefas', {
-      titulo: this.tituloTarefa,
-      descricao: this.descricaoTarefa,
-      responsavel: this.usuario,
-      etapas: this.etapas.map((etapa) => ({
-        descricao: etapa.descricao,
-        concluida: false, 
-      }))
-    })
-    .subscribe({
-      next: (res: any) => {
-        console.log('Tarefa salva com sucesso:', res);
-        // Reset form or navigate away
-      },
-      error: (err) => {
-        console.error('Erro ao salvar a tarefa:', err);
-        // Show error to user
-      }
-    });
+              },
+            },],
+          });
+      
+          await alert.present();
+          
+        }
+      });
+    }
+    
+  
+  
+    
   }
 }

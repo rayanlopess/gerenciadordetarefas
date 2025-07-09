@@ -79,6 +79,35 @@
           </ion-card>
         </ion-col>
       </ion-row>
+
+      <ion-row *ngFor="let item of dados;">
+        <ion-col>
+          <ion-card (click)="listarTarefas(item.id)">
+           
+            <ion-card-header>
+              <div class="cabecalho-avaliacao">
+                <ion-card-title>{{item.titulo}}</ion-card-title>
+
+                <ion-icon size="large" name="chevron-forward"></ion-icon>
+              </div>
+                
+           
+              
+              
+            </ion-card-header>
+          
+            
+            <ion-card-content>
+              <p><ion-progress-bar></ion-progress-bar></p>
+            </ion-card-content>
+            
+          </ion-card>
+          
+        </ion-col>
+      </ion-row>
+
+
+
     </ion-grid>
 
 

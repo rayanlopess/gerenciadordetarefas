@@ -46,9 +46,11 @@ export class LoginPage implements OnInit {
                 sessionStorage.setItem('nome', _res.user.nome);
                 sessionStorage.setItem('user', _res.user.login);
                 sessionStorage.setItem('email', _res.user.email);
-
+                
+               
                 this.rt.navigate(['/dashboard']);
 
+                
               },
             },],
           });
