@@ -7,7 +7,7 @@
           <ion-icon slot="icon-only" name="person-circle"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title>Olá, {{nome}}</ion-title>
+      <ion-title>Olá, {{nome}}!</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -22,7 +22,7 @@
 
     </ion-button> 
 
-    <ion-button expand="block" routerLink="/login" (click)="logOut()"> 
+    <ion-button expand="block" (click)="logOut()"> 
     
       <ion-icon name="log-out"></ion-icon>
       
@@ -69,12 +69,12 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Bem-Vindo, {{nome}}!</ion-card-title>
-              
+              <ion-card-title>Bem-Vindo(a), {{nome}}!</ion-card-title>
             </ion-card-header>
           
             <ion-card-content>
-              
+              <p>Progresso de todas as tarefas: {{porcentagemTotal}}% concluída(s).</p>
+               <p><ion-progress-bar color="nutask" [value]="mediaTotal"></ion-progress-bar></p>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -98,7 +98,8 @@
           
             
             <ion-card-content>
-              <p><ion-progress-bar></ion-progress-bar></p>
+              <p>Progresso: {{item.porcentagem}} concluída.</p>
+              <p><ion-progress-bar color="nutask" [value]="item.progresso"></ion-progress-bar></p>
             </ion-card-content>
             
           </ion-card>

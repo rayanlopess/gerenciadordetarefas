@@ -27,8 +27,22 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  logar(){
-    let login = this.login;
+  async logar(){
+    if(this.login == "" || this.senha == ""){
+      const alert = await this.alertController.create({
+            header: 'Preencha os campos corretamente!',
+            buttons: [{
+              text: 'OK',
+              role: 'OK',
+              handler: () => {
+              },
+            },],
+          });
+      
+          await alert.present();
+    }
+    else{
+      let login = this.login;
     let senha = this.senha;
 
     this.autenticacao_service
@@ -48,7 +62,9 @@ export class LoginPage implements OnInit {
                 sessionStorage.setItem('email', _res.user.email);
                 
                
-                this.rt.navigate(['/dashboard']);
+                this.rt.navigateByUrl('/dashboard').then(() => {
+                  window.location.reload();
+                });
 
                 
               },
@@ -78,5 +94,6 @@ export class LoginPage implements OnInit {
         }
       }
       )
+    }
   }
 }

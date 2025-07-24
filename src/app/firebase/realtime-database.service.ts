@@ -69,19 +69,51 @@ export class RealtimeDatabaseService {
 
 
 
-  async removeAndReindex(url: string, id: number) {
+  async delete(url: string, id: number) {
     
-      // 1. Remove o item específico
+      
       await remove(this.ref(`${url}/${id}`));
   
     }
   
 
 
-  async deleteAll(path: string): Promise<boolean> {
-    const dbRef = ref(this.db, path);
-    await remove(dbRef); // Deleta tudo no caminho especificado
-    return true;
-  }
+async deleteUserTasks(userId: string) {
+    const dbRef = ref(this.db, 'tarefas');
+    
+    try {
+        // 1. Busca todas as tarefas
+        const snapshot = await get(dbRef);
+        
+        if (!snapshot.exists()) {
+            console.log("Nenhuma tarefa encontrada.");
+            return false;
+        }
+
+        const tasks = snapshot.val();
+        let deletedAny = false; // Flag para verificar se pelo menos uma tarefa foi deletada
+
+        // 2. Itera sobre as tarefas e deleta as do usuário logado
+        for (const taskId in tasks) {
+            if (tasks[taskId].responsavel === userId) {
+                const taskRef = ref(this.db, `tarefas/${taskId}`);
+                await remove(taskRef); // Deleta a tarefa específica
+                deletedAny = true;
+            }
+        }
+
+        // 3. Retorna true se pelo menos uma tarefa foi deletada
+        if (deletedAny) {
+            console.log(`Tarefas do usuário ${userId} deletadas com sucesso.`);
+            return true;
+        } else {
+            console.log("Nenhuma tarefa encontrada para este usuário.");
+            return false;
+        }
+    } catch (error) {
+        console.error("Erro ao deletar tarefas:", error);
+        return false;
+    }
+}
 
 }

@@ -93,7 +93,8 @@ export class CriarTarefaPage implements OnInit {
           descricao: etapa.descricao,
           concluido: false, 
         })),
-        progresso: 0 
+        progresso: 0,
+        porcentagem: "0%"
       })
       .subscribe({
         next: async (res: any) => {
